@@ -1,10 +1,13 @@
 
 EXTRA_DIST = configure
 
-all: update_submodules all-recursive
+all: update_submodules sln_build all-recursive
 
 update_submodules:
 	git submodule update --init --recursive
+
+sln_build:
+	xbuild Main.sln /property:Configuration=DebugMac || true
 
 top_srcdir=.
 include $(top_srcdir)/config.make
